@@ -10,3 +10,8 @@ const ask = (index = 0) => {
 }
 
 ask();
+
+process.stdin.on("data", data => {
+    process.stdout.write(data.toString().trim());
+    process.exit()
+})
