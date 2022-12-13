@@ -15,10 +15,27 @@ const answers = [];
 process.stdin.on("data", data => {
     answers.push(data.toString().trim());
 
-    if (answers.length < questions.length ) {
-        ask(answers.length) 
-    } else {
-            console.log("\n" + answers);
-            process.exit()
-        }   
+    answers.length < questions.length 
+        ? ask(answers.length)
+        : process.exit();           
+})
+
+process.on('exit', () => {
+    console.log(`
+        Olá!
+
+        O que você aprendeu hoje foi:
+        ${answers[0]}
+
+        O que você não gostou e poderia melhorar é:
+        ${answers[1]}
+
+        O que você mais gostou de hoje foi:
+        ${answers[2]}
+
+        Hoje você ajudou ${answers[3]} pessoas!
+
+
+        Volte amanhã para novas reflexões!
+    `)
 })
