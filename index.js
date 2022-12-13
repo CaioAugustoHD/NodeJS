@@ -6,12 +6,19 @@ const questions = [
 ]
 
 const ask = (index = 0) => {
-    process.stdout.write(questions[index] + "\n\n\n")
+    process.stdout.write("\n" + questions[index] + " ➝  ")
 }
 
 ask();
 
+const answers = [];
 process.stdin.on("data", data => {
-    process.stdout.write(data.toString().trim());
-    process.exit()
+    answers.push(data.toString().trim());
+
+    if (answers.length < questions.length ) {
+        ask(answers.length) 
+    } else {
+            console.log("\n" + answers);
+            process.exit()
+        }   
 })
